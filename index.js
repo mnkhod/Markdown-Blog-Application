@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Article = require('./models/article');
+const method = require('method-override');
 const app = express();
 
 
@@ -8,6 +9,7 @@ const app = express();
 mongoose.connect('mongodb+srv://mnkhod:981014@zaanaa-db-ka8ey.azure.mongodb.net/markdown?retryWrites=true&w=majority', { 
   useNewUrlParser : true , 
   useUnifiedTopology: true ,
+  useCreateIndex: true
 });
 
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded( { extended : false } ));
 
 
 // Middleware For Router
+app.use(method('_method'));
 app.use('/articles', articleRouter);
 
 
