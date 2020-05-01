@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    container_name: markdown_project_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: markdown
+    ports:
+      - 27017:27017
+    volumes:
+      - markdown_project_volume:/data/db
+
+volumes:
+  markdown_project_volume:

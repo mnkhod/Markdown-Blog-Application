@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,9 @@
   "dependencies": {
     "ejs": "^3.1.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.11"
+    "marked": "^1.0.0",
+    "mongoose": "^5.9.11",
+    "slugify": "^1.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

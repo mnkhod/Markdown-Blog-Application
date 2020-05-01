@@ -1,13 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Article = require('./models/article');
 const app = express();
+
+
+// MONGODB
+mongoose.connect('mongodb+srv://mnkhod:981014@zaanaa-db-ka8ey.azure.mongodb.net/markdown?retryWrites=true&w=majority', { 
+  useNewUrlParser : true , 
+  useUnifiedTopology: true ,
+});
+
 
 // Routers
 const articleRouter = require('./routes/articles');
-
-// MONGODB
-mongoose.connect('mongodb://localhost/blog', { useNewUrlParser : true , useUnifiedTopology: true });
-
 
 app.set('view engine','ejs');
 // get post body request data
@@ -22,22 +27,10 @@ app.use('/articles', articleRouter);
 
 
 // index route
-app.get('/', (req , res) => {
-  let articles = [{
-      title : 'Test Article',
-      createdAt : new Date(),
-      description : 'Test Description'
-    },
-    {
-      title : 'Test Article2',
-      createdAt : new Date(),
-      description : 'Test Description2'
-    },
+app.get('/', async (req , res) => {
+  let article_list = await Article.find().sort({createdAt: 'desc'});
 
-  ];
-
-
-  res.render('articles/index', { articles : articles });
+  res.render('articles/index', { articles : article_list });
 });
 
 app.listen(5000);

@@ -8,21 +8,18 @@
 <body>
 
   <div class="container">
-    <h1 class="mb-4 mt-4">Blog Articles</h1>
-    <a href="/articles/new" class="btn btn-success">New Article</a>
+    <h1 class="mb-4 mt-4"><%= article.title %></h1>
 
-    <% articles.forEach( a => { %>
-      <div class="card mt-4">
-	<div class="card-body">
-	  <h4 class="card-title"><%= a.title %></h4>
-	  <div class="card-subtitle text-muted mb-2">
-	    <%= a.createdAt.toLocaleDateString() %>
-	  </div>
-	  <div class="card-text mb-2"><%= a.description %></div>
-	  <a href="articles/<%= a.id %>" class="btn btn-primary">Read More</a>
-	</div>
-      </div>
-    <% }); %>
+    <div class="text-muted mb-2">
+      <%= article.createdAt.toLocaleDateString() %>
+    </div>
+
+    <a href="/" class="btn btn-secondary">All Articles</a>
+    <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+
+    <div>
+      <% article.markdown %>
+    </div>
 
   </div>
 
